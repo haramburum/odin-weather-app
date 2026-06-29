@@ -44,6 +44,7 @@ const screenController = () => {
     } finally {
       loader.classList.add("hide");
       weatherCard.style.opacity = 1;
+      searchForm.reset();
     }
   };
 
