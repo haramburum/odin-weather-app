@@ -27,7 +27,7 @@ const screenController = () => {
       descrElem.textContent = data.currentConditions.conditions;
 
       const iconName = data.currentConditions.icon;
-      cardIcon.src = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/58c79610addf3d4d91471abbb95b05e96fb43019/SVG/1st%20Set%20-%20Monochrome/${iconName}.svg`;
+      cardIcon.src = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/SVG/1st%20Set%20-%20Monochrome/${iconName}.svg`;
       cardIcon.alt = iconName;
       console.log(iconName);
 
