@@ -11,6 +11,8 @@ const screenController = () => {
   const humidityElem = document.querySelector(".details-card__data--humidity");
   const windElem = document.querySelector(".details-card__data--wind-speed");
   const visibElem = document.querySelector(".details-card__data--visibility");
+  const loader = document.querySelector(".loader");
+  const weatherCard = document.querySelector(".weather-card");
 
   const formatTemperature = (temp) => {
     const roundedTemp = Math.round(temp);
@@ -21,6 +23,8 @@ const screenController = () => {
     const defaultCity = "Moscow";
 
     try {
+      loader.classList.remove("hide");
+      weatherCard.style.opacity = 0.1;
       const data = await app(searchInput.value || defaultCity);
       locationElem.textContent = data.resolvedAddress.split(", ")[0];
       tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}\u00B0C`;
@@ -37,6 +41,9 @@ const screenController = () => {
       visibElem.textContent = `${data.currentConditions.visibility} km`;
     } catch (error) {
       console.log(error);
+    } finally {
+      loader.classList.add("hide");
+      weatherCard.style.opacity = 1;
     }
   };
 
@@ -50,4 +57,4 @@ const screenController = () => {
   return { renderData };
 };
 
-export default screenController();
+export default screenController;

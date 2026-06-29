@@ -1,4 +1,6 @@
 import "../css/styles.css";
 import screenController from "./screenController.js";
 
-screenController.renderData();
+const controller = screenController();
+
+controller.renderData();

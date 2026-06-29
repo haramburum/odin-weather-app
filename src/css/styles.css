@@ -34,7 +34,9 @@ body {
 }
 
 .weather-app {
+  position: relative;
   width: 900px;
+  max-height: 500px;
 }
 
 .weather-card {
@@ -202,4 +204,17 @@ body {
 
 .details-card__data {
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.loader {
+  position: absolute;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  top: 230px;
+  left: 370px;
+}
+
+.hide {
+  display: none;
 }
