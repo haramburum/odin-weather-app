@@ -1,11 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="weather-app">
+      <div class="weather-card">
+        <form class="weather-card__form">
+          <button type="submit" class="weather-card__search-btn">
+          </button>
+          <input type="search" class="weather-card__search-input" placeholder="Search for a city...(e.g., Moscow, Tokyo)"/>
+        </form>
+        <div class="weather-card__main">
+          <p class="weather-card__location">Current location<br><span class="weather-card__location-name"></span></p>
+          <p class="weather-card__time"></p>
+          <p class="weather-card__temp"></p>
+          <p class="weather-card__icon"></p>
+          <p class="weather-card__description"></p>
+        </div>
+        <div class="weather-card__details details">
+          <div class="details-card">
+            <img class="details-card__icon"></img>
+            <p class="details-card__title">Feels Like</p>
+            <p class="details-card__data details-card__data--feels-like"></p>
+          </div>
+          <div class="details-card">
+            <img class="details-card__icon"></img>
+            <p class="details-card__title">Humidity</p>
+            <p class="details-card__data details-card__data--humidity"></p>
+          </div>
+          <div class="details-card">
+            <img class="details-card__icon"></img>
+            <p class="details-card__title">Wind Speed</p>
+            <p class="details-card__data details-card__data--wind-speed"></p>
+          </div>
+          <div class="details-card">
+            <img class="details-card__icon"></img>
+            <p class="details-card__title">Visibility</p>
+            <p class="details-card__data details-card__data--visibility"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
