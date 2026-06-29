@@ -1,15 +1,13 @@
 import getData from "./api.js";
 
-const App = async (city) => {
+const app = async (city) => {
   try {
     const data = await getData(city);
-    const { resolvedAddress, description } = data;
-    const { temp, icon } = data.currentConditions;
-
-    console.log(resolvedAddress, temp, description, icon);
+    console.log(data);
+    return data;
   } catch (error) {
     console.log("Weather parse error", error);
   }
 };
 
-export default App;
+export default app;

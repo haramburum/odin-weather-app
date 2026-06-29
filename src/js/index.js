@@ -1,4 +1,4 @@
 import "../css/styles.css";
-import App from "./App.js";
+import screenController from "./screenController.js";
 
-window.getWeather = App;
+screenController();
