@@ -14,7 +14,7 @@ const screenController = () => {
 
   const formatTemperature = (temp) => {
     const roundedTemp = Math.round(temp);
-    return temp < 0 ? `-${roundedTemp}` : `+${roundedTemp}`;
+    return temp < 0 ? `${roundedTemp}` : `+${roundedTemp}`;
   };
 
   searchForm.addEventListener("submit", async (e) => {
