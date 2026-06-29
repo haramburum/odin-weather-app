@@ -17,11 +17,11 @@ const screenController = () => {
     return temp < 0 ? `${roundedTemp}` : `+${roundedTemp}`;
   };
 
-  searchForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const renderData = async () => {
+    const defaultCity = "Moscow";
 
     try {
-      const data = await app(searchInput.value);
+      const data = await app(searchInput.value || defaultCity);
       locationElem.textContent = data.resolvedAddress.split(", ")[0];
       tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}\u00B0C`;
       descrElem.textContent = data.currentConditions.conditions;
@@ -38,7 +38,16 @@ const screenController = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  };
+
+  const handleSearchFormSubmit = async (e) => {
+    e.preventDefault();
+    await renderData();
+  };
+
+  searchForm.addEventListener("submit", handleSearchFormSubmit);
+
+  return { renderData };
 };
 
-export default screenController;
+export default screenController();
