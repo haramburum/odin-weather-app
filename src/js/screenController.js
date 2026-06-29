@@ -21,7 +21,7 @@ const screenController = () => {
 
     try {
       const data = await app(searchInput.value);
-      locationElem.textContent = data.resolvedAddress;
+      locationElem.textContent = data.resolvedAddress.split(", ")[0];
       tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}\u00B0C`;
       descrElem.textContent = data.currentConditions.conditions;
 
