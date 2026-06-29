@@ -22,12 +22,17 @@ body {
     "Helvetica Neue",
     sans-serif;
   font-size: 16px;
-  background: linear-gradient(135deg, #8faed3 0%, #a29bc4 50%, #614a77 100%);
-  background-attachment: fixed; /* Чтобы фон не растягивался при скролле */
+  background: #0590fa;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 144, 250, 1) 0%,
+    rgba(7, 109, 242, 0.51) 56%,
+    rgba(187, 7, 242, 1) 100%
+  );
 }
 
 .weather-app {
-  width: 800px;
+  width: 900px;
 }
 
 .weather-card {
@@ -70,7 +75,7 @@ body {
 
 .weather-card__search-btn {
   position: absolute;
-  background-image: url("../icons/search-icon.svg");
+  background-image: url("../img/search-icon.svg");
   background-repeat: no-repeat;
   background-size: 30px 30px;
   width: 30px;
@@ -90,9 +95,9 @@ body {
   flex-direction: column;
   grid-area: main;
   background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.35) 0%, 
-    rgba(240, 244, 248, 0.20) 100%
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(240, 244, 248, 0.2) 100%
   );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -121,4 +126,64 @@ body {
 
 .weather-card__details {
   grid-area: details;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.details__title {
+  color: #ffffff;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.details__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.details-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+  gap: 10px;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  color: #ffffff;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.details-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(240, 244, 248, 0.2) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 20px;
+}
+
+.details-card__icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.details-card__title {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
 }
