@@ -8,6 +8,7 @@ const getData = async (city) => {
     return data;
   } catch (error) {
     console.log(`Weather fetch error: ${error}`);
+    throw error;
   }
 };
 

@@ -7,6 +7,7 @@ const app = async (city) => {
     return data;
   } catch (error) {
     console.log("Weather parse error", error);
+    throw error;
   }
 };
 

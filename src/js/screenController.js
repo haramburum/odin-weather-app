@@ -23,6 +23,7 @@ const screenController = () => {
     const defaultCity = "Moscow";
 
     try {
+      searchForm.style.pointerEvents = "none";
       loader.classList.remove("hide");
       weatherCard.style.opacity = 0.1;
       const data = await app(searchInput.value || defaultCity);
@@ -45,6 +46,7 @@ const screenController = () => {
       loader.classList.add("hide");
       weatherCard.style.opacity = 1;
       searchForm.reset();
+      searchForm.style.pointerEvents = "auto";
     }
   };
 
