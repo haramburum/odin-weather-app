@@ -11,19 +11,24 @@ const screenController = () => {
   const windElem = document.querySelector(".details-card__data--wind-speed");
   const visibElem = document.querySelector(".details-card__data--visibility");
 
+  const formatTemperature = (temp) =>  {
+    const roundedTemp = Math.round(temp);
+    return temp < 0 ? `-${roundedTemp}` : `+${roundedTemp}`;
+  };
+
   searchForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     try {
       const data = await app(searchInput.value);
       locationElem.textContent = data.resolvedAddress;
-      tempElem.textContent = data.currentConditions.temp;
+      tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}\u00B0C`;
       descrElem.textContent = data.currentConditions.conditions;
 
-      feelsElem.textContent = data.currentConditions.feelslike;
-      humidityElem.textContent = data.currentConditions.humidity;
-      windElem.textContent = data.currentConditions.windSpeed;
-      visibElem.textContent = data.currentConditions.visibility;
+      feelsElem.textContent = `${formatTemperature(data.currentConditions.feelslike)}\u00B0C`;
+      humidityElem.textContent = `${data.currentConditions.humidity}%`;
+      windElem.textContent = `${data.currentConditions.windspeed} km/h`;
+      visibElem.textContent = `${data.currentConditions.visibility} km`;
     } catch (error) {
       console.log(error);
     }
