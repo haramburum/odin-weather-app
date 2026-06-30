@@ -3,4 +3,4 @@ import screenController from "./screenController.js";
 
 const controller = screenController();
 
-controller.renderData();
+controller.init();

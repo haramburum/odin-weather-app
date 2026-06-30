@@ -17,9 +17,25 @@ const screenController = () => {
     ".weather-card__toggleTempMeasure",
   );
 
-  let currentTempMeasure = "\u00B0C";
+  const init = () => {
+    setTogglerState();
+    renderData();
+  };
+
+  const setTogglerState = () => {
+    const currentTempMeasure = localStorage.getItem("tempMeasure");
+
+    if (!currentTempMeasure) {
+      tempMeasureToggler.checked = false;
+      localStorage.setItem("tempMeasure", "\u00B0C");
+      return;
+    }
+
+    tempMeasureToggler.checked = currentTempMeasure !== "\u00B0C";
+  };
 
   const formatTemperature = (temp) => {
+    const currentTempMeasure = localStorage.getItem("tempMeasure");
     if (currentTempMeasure === "\u00B0F") {
       temp = temp * 1.8 + 32;
     }
@@ -74,10 +90,11 @@ const screenController = () => {
   };
 
   const handleMeasureTogglerClick = () => {
+    const currentTempMeasure = localStorage.getItem("tempMeasure");
     if (currentTempMeasure === "\u00B0C") {
-      currentTempMeasure = "\u00B0F";
+      localStorage.setItem("tempMeasure", "\u00B0F");
     } else {
-      currentTempMeasure = "\u00B0C";
+      localStorage.setItem("tempMeasure", "\u00B0C");
     }
     renderData();
   };
@@ -86,7 +103,7 @@ const screenController = () => {
 
   searchForm.addEventListener("submit", handleSearchFormSubmit);
 
-  return { renderData };
+  return { init };
 };
 
 export default screenController;
