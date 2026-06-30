@@ -39,7 +39,6 @@ const screenController = () => {
 
   const renderData = async () => {
     const defaultCity = "Moscow";
-
     try {
       searchForm.style.pointerEvents = "none";
       loader.classList.remove("hide");
@@ -49,17 +48,17 @@ const screenController = () => {
       locationElem.textContent = data.resolvedAddress;
       adjustLocationFontSize(data.resolvedAddress);
 
-      tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}`;
-      descrElem.textContent = data.currentConditions.conditions;
+      tempElem.textContent = `${formatTemperature(data.temp)}`;
+      descrElem.textContent = data.conditions;
 
-      const iconName = data.currentConditions.icon;
+      const iconName = data.icon;
       cardIcon.src = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/SVG/1st%20Set%20-%20Monochrome/${iconName}.svg`;
       cardIcon.alt = iconName;
 
-      feelsElem.textContent = `${formatTemperature(data.currentConditions.feelslike)}`;
-      humidityElem.textContent = `${data.currentConditions.humidity}%`;
-      windElem.textContent = `${data.currentConditions.windspeed} km/h`;
-      visibElem.textContent = `${data.currentConditions.visibility} km`;
+      feelsElem.textContent = `${formatTemperature(data.feelslike)}`;
+      humidityElem.textContent = `${data.humidity}%`;
+      windElem.textContent = `${data.windspeed} km/h`;
+      visibElem.textContent = `${data.visibility} km`;
     } catch (error) {
       console.log(error);
     } finally {
@@ -75,14 +74,16 @@ const screenController = () => {
     await renderData();
   };
 
-  tempMeasureToggler.addEventListener("click", () => {
+  const handleMeasureTogglerClick = () => {
     if (currentTempMeasure === "\u00B0C") {
       currentTempMeasure = "\u00B0F";
     } else {
       currentTempMeasure = "\u00B0C";
     }
     renderData();
-  });
+  };
+
+  tempMeasureToggler.addEventListener("click", handleMeasureTogglerClick);
 
   searchForm.addEventListener("submit", handleSearchFormSubmit);
 
