@@ -19,6 +19,14 @@ const screenController = () => {
     return temp < 0 ? `${roundedTemp}` : `+${roundedTemp}`;
   };
 
+  const adjustLocationFontSize = (location) => {
+    if (location.split("").length >= 15) {
+      locationElem.classList.add("weather-card__location--small");
+    } else {
+      locationElem.classList.remove("weather-card__location--small");
+    }
+  };
+
   const renderData = async () => {
     const defaultCity = "Moscow";
 
@@ -26,8 +34,11 @@ const screenController = () => {
       searchForm.style.pointerEvents = "none";
       loader.classList.remove("hide");
       weatherCard.style.opacity = 0.1;
+
       const data = await app(searchInput.value || defaultCity);
-      locationElem.textContent = data.resolvedAddress.split(", ")[0];
+      locationElem.textContent = data.resolvedAddress;
+      adjustLocationFontSize(data.resolvedAddress);
+
       tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}\u00B0C`;
       descrElem.textContent = data.currentConditions.conditions;
 
