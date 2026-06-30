@@ -1,9 +1,19 @@
-import getData from "./api.js";
+import { getCitybYiP, getData } from "./api.js";
 
 const app = async (city) => {
+  let defaultCity = city;
+
+  if (!defaultCity) {
+    try {
+      defaultCity = await getCitybYiP();
+    } catch (error) {
+      console.log("Geo error", error);
+      defaultCity = "London";
+    }
+  }
+
   try {
-    const data = await getData(city);
-    console.log(data);
+    const data = await getData(defaultCity);
     return {
       resolvedAddress: data.resolvedAddress,
       conditions: data.currentConditions.conditions,
@@ -14,7 +24,6 @@ const app = async (city) => {
       visibility: data.currentConditions.visibility,
       temp: data.currentConditions.temp,
     };
-    
   } catch (error) {
     console.log("Weather parse error", error);
     throw error;

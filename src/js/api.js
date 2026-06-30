@@ -12,4 +12,17 @@ const getData = async (city) => {
   }
 };
 
-export default getData;
+const getCitybYiP = async () => {
+  try {
+    const geoResponse = await fetch(
+      "https://api.2ip.io/?token=7i9zr9rvscpore8h",
+    );
+    const geoData = await geoResponse.json();
+    return geoData.city;
+  } catch (error) {
+    console.log("Geo error", error);
+    throw error;
+  }
+};
+
+export {getData, getCitybYiP};

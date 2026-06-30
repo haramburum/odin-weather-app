@@ -38,13 +38,12 @@ const screenController = () => {
   };
 
   const renderData = async () => {
-    const defaultCity = "Moscow";
     try {
       searchForm.style.pointerEvents = "none";
       loader.classList.remove("hide");
       weatherCard.style.opacity = 0.1;
 
-      const data = await app(searchInput.value || defaultCity);
+      const data = await app(searchInput.value);
       locationElem.textContent = data.resolvedAddress;
       adjustLocationFontSize(data.resolvedAddress);
 
