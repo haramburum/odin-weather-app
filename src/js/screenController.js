@@ -13,10 +13,20 @@ const screenController = () => {
   const visibElem = document.querySelector(".details-card__data--visibility");
   const loader = document.querySelector(".loader");
   const weatherCard = document.querySelector(".weather-card");
+  const tempMeasureToggler = document.querySelector(
+    ".weather-card__toggleTempMeasure",
+  );
+
+  let currentTempMeasure = "\u00B0C";
 
   const formatTemperature = (temp) => {
+    if (currentTempMeasure === "\u00B0F") {
+      temp = temp * 1.8 + 32;
+    }
     const roundedTemp = Math.round(temp);
-    return temp < 0 ? `${roundedTemp}` : `+${roundedTemp}`;
+    return roundedTemp < 0
+      ? `${roundedTemp}${currentTempMeasure}`
+      : `+${roundedTemp}${currentTempMeasure}`;
   };
 
   const adjustLocationFontSize = (location) => {
@@ -39,14 +49,14 @@ const screenController = () => {
       locationElem.textContent = data.resolvedAddress;
       adjustLocationFontSize(data.resolvedAddress);
 
-      tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}\u00B0C`;
+      tempElem.textContent = `${formatTemperature(data.currentConditions.temp)}`;
       descrElem.textContent = data.currentConditions.conditions;
 
       const iconName = data.currentConditions.icon;
       cardIcon.src = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/SVG/1st%20Set%20-%20Monochrome/${iconName}.svg`;
       cardIcon.alt = iconName;
 
-      feelsElem.textContent = `${formatTemperature(data.currentConditions.feelslike)}\u00B0C`;
+      feelsElem.textContent = `${formatTemperature(data.currentConditions.feelslike)}`;
       humidityElem.textContent = `${data.currentConditions.humidity}%`;
       windElem.textContent = `${data.currentConditions.windspeed} km/h`;
       visibElem.textContent = `${data.currentConditions.visibility} km`;
@@ -64,6 +74,15 @@ const screenController = () => {
     e.preventDefault();
     await renderData();
   };
+
+  tempMeasureToggler.addEventListener("click", () => {
+    if (currentTempMeasure === "\u00B0C") {
+      currentTempMeasure = "\u00B0F";
+    } else {
+      currentTempMeasure = "\u00B0C";
+    }
+    renderData();
+  });
 
   searchForm.addEventListener("submit", handleSearchFormSubmit);
 
